@@ -61,6 +61,7 @@ const router: Router = express.Router();
  */
 router.get('/books', authenticateToken, getAllBooks);
 
+
 /**
  * @swagger
  * /api/books/{id}:
@@ -93,6 +94,7 @@ router.get('/books', authenticateToken, getAllBooks);
  */
 router.get('/books/:id', authenticateToken, getBookById);
 
+
 /**
  * @swagger
  * /api/books/{id}:
@@ -120,6 +122,7 @@ router.get('/books/:id', authenticateToken, getBookById);
  *         description: Internal Server Error
  */
 router.delete('/books/:id', authenticateToken, deleteBook);
+
 
 /**
  * @swagger
@@ -183,6 +186,7 @@ router.delete('/books/:id', authenticateToken, deleteBook);
  *         description: Internal Server Error
  */
 router.post('/books', authenticateToken, addBook);
+
 
 /**
  * @swagger
@@ -249,5 +253,6 @@ router.post('/books', authenticateToken, addBook);
  *         description: Internal Server Error
  */
 router.put('/books/:id', authenticateToken, updateBook);
+
 
 export default router;

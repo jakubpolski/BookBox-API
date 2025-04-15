@@ -87,7 +87,7 @@ const swaggerOptions: swaggerJSDoc.Options = {
       },
     },
   },
-  apis: ['./routes/*.ts'],
+  apis: ['./routes/*'],
 };
 
 export default swaggerJSDoc(swaggerOptions);
