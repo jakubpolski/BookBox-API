@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import { getAllBooks, getBookById, deleteBook, addBook, updateBook } from '../controllers/bookController';
+import { authenticateToken } from '../middleware/auth';
 
 const router: Router = express.Router();
 
@@ -52,7 +53,7 @@ const router: Router = express.Router();
  *                     limit:
  *                       type: integer
  */
-router.get('/books', getAllBooks);
+router.get('/books', authenticateToken,getAllBooks);
 
 /**
  * @swagger
@@ -79,7 +80,7 @@ router.get('/books', getAllBooks);
  *       500:
  *         description: Internal Server Error
  */
-router.get('/books/:id', getBookById);
+router.get('/books/:id', authenticateToken,getBookById);
 
 /**
  * @swagger
@@ -102,7 +103,7 @@ router.get('/books/:id', getBookById);
  *       500:
  *         description: Internal Server Error
  */
-router.delete('/books/:id', deleteBook);
+router.delete('/books/:id', authenticateToken,deleteBook);
 
 /**
  * @swagger
@@ -160,7 +161,7 @@ router.delete('/books/:id', deleteBook);
  *       500:
  *         description: Internal Server Error
  */
-router.post('/books', addBook);
+router.post('/books', authenticateToken,addBook);
 
 /**
  * @swagger
@@ -221,6 +222,6 @@ router.post('/books', addBook);
  *       500:
  *         description: Internal Server Error
  */
-router.put('/books/:id', updateBook);
+router.put('/books/:id', authenticateToken,updateBook);
 
 export default router;

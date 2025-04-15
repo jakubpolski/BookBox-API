@@ -1,5 +1,6 @@
 import express, { Router } from 'express';
 import { registerUser, loginUser, getMe } from '../controllers/authController';
+import { authenticateToken } from '../middleware/auth';
 
 const router: Router = express.Router();
 
@@ -127,6 +128,6 @@ router.post('/login', loginUser);
  *       500:
  *         description: Internal Server Error
  */
-router.get('/me', getMe);
+router.get('/me',authenticateToken, getMe);
 
 export default router;

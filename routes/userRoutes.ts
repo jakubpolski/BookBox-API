@@ -1,5 +1,7 @@
 import express, { Router } from 'express';
 import { getAllUsers, deleteUser } from '../controllers/userController';
+import { authenticateToken } from '../middleware/auth';
+import { authorizeAdmin } from '../middleware/authAdmin';
 
 const router: Router = express.Router();
 
@@ -57,7 +59,7 @@ const router: Router = express.Router();
  *       500:
  *         description: Internal Server Error
  */
-router.get('/users', getAllUsers);
+router.get('/users',authenticateToken,authorizeAdmin, getAllUsers);
 
 /**
  * @swagger
@@ -83,6 +85,6 @@ router.get('/users', getAllUsers);
  *       500:
  *         description: Internal Server Error
  */
-router.delete('/users/:id', deleteUser);
+router.delete('/users/:id',authenticateToken,authorizeAdmin, deleteUser);
 
 export default router;
