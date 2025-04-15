@@ -4,17 +4,14 @@ BookBox application backend
 
 ## How to run
 ```bash
-  npm install ts-node typescript --save-dev
-```
-
-```bash
-  npm install
+  npm ci
 ```
 
 create ```.env``` file and fill credentials
 ```bash
   DB_USER=  
   DB_PASSWORD=
+  JWT_SECRET=
 ```
 
 Run API (swagger created automatically) with

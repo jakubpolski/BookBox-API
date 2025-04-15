@@ -1,11 +1,11 @@
-import express from 'express';
-const { Request, Response } = express;
-import Book from '../models/Book.ts';
+import {Request, Response} from 'express';
+import Book from '../models/Book';
 
 interface PaginatedRequest extends Request {
     query: {
         page?: string;
         limit?: string;
+        query?: string;
     };
 }
 
@@ -13,11 +13,21 @@ export const getAllBooks = async (req: PaginatedRequest, res: Response): Promise
     try {
         const page = parseInt(req.query.page || '1'); // Default to 1 if not provided
         const limit = parseInt(req.query.limit || '10'); // Default to 10 if not provided
-
         const skip = (page - 1) * limit;
 
-        const books = await Book.find().skip(skip).limit(limit);
-        const totalBooks = await Book.countDocuments();
+        const query = req.query.query?.toString();
+
+        const filter: any = {};
+
+        if(query) {
+            filter.$or = [
+                {title: { $regex: query, $options: 'i' }},
+                {author: { $regex: query, $options: 'i' }}
+            ];
+        }
+
+        const books = await Book.find(filter).skip(skip).limit(limit);
+        const totalBooks = await Book.countDocuments(filter);
         const totalPages = Math.ceil(totalBooks / limit);
 
         res.json({
@@ -43,7 +53,7 @@ export const getBookById = async (req: Request, res: Response): Promise<void> =>
         }
         res.json(book);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ error: error instanceof Error ? error.message : "Internal server error" });
     }
 };
 
@@ -56,7 +66,7 @@ export const deleteBook = async (req: Request, res: Response): Promise<void> => 
         }
         res.json({ message: "Book deleted successfully" });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ error: error instanceof Error ? error.message : "Internal server error" });
     }
 };
 
@@ -66,7 +76,7 @@ export const addBook = async (req: Request, res: Response): Promise<void> => {
         await newBook.save();
         res.status(201).json({ message: "Book added successfully", book: newBook });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ error: error instanceof Error ? error.message : "Internal server error" });
     }
 };
 
@@ -80,6 +90,6 @@ export const updateBook = async (req: Request, res: Response): Promise<void> => 
         }
         res.status(200).json({ message: "Book updated successfully", book: updatedBook });
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ error: error instanceof Error ? error.message : "Internal server error" });
     }
 };
