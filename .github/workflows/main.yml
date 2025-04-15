@@ -12,7 +12,7 @@ name: Publish Docker image
 on:
   push:
     branches:
-      - 'prod'
+      - 'prod-backend'
 
 jobs:
   push_to_registry:
@@ -27,7 +27,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
         with:
-          ref: 'prod'
+          ref: 'prod-backend'
 
       - name: Log in to Docker Hub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
@@ -39,7 +39,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: pawprojekt2025/pawprojekt2025-backend
+          images: pawprojekt2025/pawprojekt2025
 
       - name: Build and push Docker image
         id: push
