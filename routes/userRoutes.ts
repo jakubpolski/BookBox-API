@@ -12,6 +12,8 @@ const router: Router = express.Router();
  *     summary: Retrieve a list of users
  *     description: Fetch all users with optional pagination. Only accessible by admins.
  *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: page
  *         in: query
@@ -70,6 +72,8 @@ router.get('/users',authenticateToken, authorizeAdmin, getAllUsers);
  *     summary: Delete a user by ID
  *     description: Delete a user by their ID. Only accessible by admins.
  *     tags: [Users]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path

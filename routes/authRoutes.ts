@@ -94,6 +94,8 @@ router.post('/login', loginUser);
  *   get:
  *     summary: Get user information
  *     tags: [Auth]
+ *     security:
+ *       - bearerAuth: []
  *     description: Get the information of the currently logged-in user.
  *     responses:
  *       '200':

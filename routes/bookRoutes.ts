@@ -11,6 +11,8 @@ const router: Router = express.Router();
  *     summary: Retrieve a list of books
  *     description: Fetch all books with optional pagination
  *     tags: [Books]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: query
  *         name: page
@@ -66,6 +68,8 @@ router.get('/books', authenticateToken, getAllBooks);
  *     summary: Get a book by ID
  *     description: Get a book by ID
  *     tags: [Books]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -96,6 +100,8 @@ router.get('/books/:id', authenticateToken, getBookById);
  *     summary: Delete a book by ID
  *     description: Delete a book by ID
  *     tags: [Books]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
@@ -122,6 +128,8 @@ router.delete('/books/:id', authenticateToken, deleteBook);
  *     summary: Add a new book
  *     description: Add a new book to the library
  *     tags: [Books]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -183,6 +191,8 @@ router.post('/books', authenticateToken, addBook);
  *     summary: Update a book by ID
  *     description: Update an existing book by ID
  *     tags: [Books]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - name: id
  *         in: path
