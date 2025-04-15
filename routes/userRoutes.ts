@@ -54,6 +54,8 @@ const router: Router = express.Router();
  *                     totalPages:
  *                       type: integer
  *                       description: Total number of pages available
+ *       401:
+ *         description: Unauthorized – Missing or invalid token
  *       403:
  *         description: Forbidden, if the user is not an admin
  *       500:
@@ -78,6 +80,8 @@ router.get('/users',authenticateToken,authorizeAdmin, getAllUsers);
  *     responses:
  *       200:
  *         description: User deleted successfully
+ *       401:
+ *         description: Unauthorized – Missing or invalid token
  *       403:
  *         description: Forbidden, if the user is not an admin
  *       404:

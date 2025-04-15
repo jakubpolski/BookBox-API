@@ -52,6 +52,10 @@ const router: Router = express.Router();
  *                       type: integer
  *                     limit:
  *                       type: integer
+ *       401:
+ *         description: Unauthorized – Missing or invalid token
+ *       500:
+ *         description: Internal Server Error
  */
 router.get('/books', authenticateToken,getAllBooks);
 
@@ -59,6 +63,7 @@ router.get('/books', authenticateToken,getAllBooks);
  * @swagger
  * /api/books/{id}:
  *   get:
+ *     summary: Get a book by ID
  *     description: Get a book by ID
  *     tags: [Books]
  *     parameters:
@@ -75,6 +80,8 @@ router.get('/books', authenticateToken,getAllBooks);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Book'
+ *       401:
+ *         description: Unauthorized – Missing or invalid token
  *       404:
  *         description: Book not found
  *       500:
@@ -86,6 +93,7 @@ router.get('/books/:id', authenticateToken,getBookById);
  * @swagger
  * /api/books/{id}:
  *   delete:
+ *     summary: Delete a book by ID
  *     description: Delete a book by ID
  *     tags: [Books]
  *     parameters:
@@ -98,6 +106,8 @@ router.get('/books/:id', authenticateToken,getBookById);
  *     responses:
  *       200:
  *         description: Book deleted successfully
+ *       401:
+ *         description: Unauthorized – Missing or invalid token
  *       404:
  *         description: Book not found
  *       500:
@@ -109,6 +119,7 @@ router.delete('/books/:id', authenticateToken,deleteBook);
  * @swagger
  * /api/books:
  *   post:
+ *     summary: Add a new book
  *     description: Add a new book to the library
  *     tags: [Books]
  *     requestBody:
@@ -156,6 +167,8 @@ router.delete('/books/:id', authenticateToken,deleteBook);
  *                   example: "Book added successfully"
  *                 book:
  *                   $ref: '#/components/schemas/Book'
+ *       401:
+ *         description: Unauthorized – Missing or invalid token
  *       400:
  *         description: Bad Request - Invalid input
  *       500:
@@ -167,6 +180,7 @@ router.post('/books', authenticateToken,addBook);
  * @swagger
  * /api/books/{id}:
  *   put:
+ *     summary: Update a book by ID
  *     description: Update an existing book by ID
  *     tags: [Books]
  *     parameters:
@@ -217,6 +231,8 @@ router.post('/books', authenticateToken,addBook);
  *               $ref: '#/components/schemas/Book'
  *       400:
  *         description: Bad Request - Invalid input
+ *       401:
+ *         description: Unauthorized – Missing or invalid token
  *       404:
  *         description: Book not found
  *       500:
