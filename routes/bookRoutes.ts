@@ -30,7 +30,7 @@ const router: Router = express.Router();
  *           type: string
  *         description: Optional search string to filter books by title or author
  *     responses:
- *       200:
+ *       '200':
  *         description: A list of books
  *         content:
  *           application/json:
@@ -52,9 +52,9 @@ const router: Router = express.Router();
  *                       type: integer
  *                     limit:
  *                       type: integer
- *       401:
- *         description: Unauthorized – Missing or invalid token
- *       500:
+ *       '401':
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       '500':
  *         description: Internal Server Error
  */
 router.get('/books', authenticateToken, getAllBooks);
@@ -74,17 +74,17 @@ router.get('/books', authenticateToken, getAllBooks);
  *         schema:
  *           type: string
  *     responses:
- *       200:
+ *       '200':
  *         description: Book found
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Book'
- *       401:
- *         description: Unauthorized – Missing or invalid token
- *       404:
+ *       '401':
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       '404':
  *         description: Book not found
- *       500:
+ *       '500':
  *         description: Internal Server Error
  */
 router.get('/books/:id', authenticateToken, getBookById);
@@ -104,13 +104,13 @@ router.get('/books/:id', authenticateToken, getBookById);
  *         schema:
  *           type: string
  *     responses:
- *       200:
+ *       '200':
  *         description: Book deleted successfully
- *       401:
- *         description: Unauthorized – Missing or invalid token
- *       404:
+ *       '401':
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       '404':
  *         description: Book not found
- *       500:
+ *       '500':
  *         description: Internal Server Error
  */
 router.delete('/books/:id', authenticateToken, deleteBook);
@@ -155,7 +155,7 @@ router.delete('/books/:id', authenticateToken, deleteBook);
  *                 format: date-time
  *                 description: The date when the book was added
  *     responses:
- *       201:
+ *       '201':
  *         description: Book added successfully
  *         content:
  *           application/json:
@@ -167,11 +167,11 @@ router.delete('/books/:id', authenticateToken, deleteBook);
  *                   example: "Book added successfully"
  *                 book:
  *                   $ref: '#/components/schemas/Book'
- *       401:
- *         description: Unauthorized – Missing or invalid token
- *       400:
+ *       '401':
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       '400':
  *         description: Bad Request - Invalid input
- *       500:
+ *       '500':
  *         description: Internal Server Error
  */
 router.post('/books', authenticateToken, addBook);
@@ -223,19 +223,19 @@ router.post('/books', authenticateToken, addBook);
  *                 format: date-time
  *                 description: The date when the book was added
  *     responses:
- *       200:
+ *       '200':
  *         description: Book updated successfully
  *         content:
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Book'
- *       400:
+ *       '400':
  *         description: Bad Request - Invalid input
- *       401:
- *         description: Unauthorized – Missing or invalid token
- *       404:
+ *       '401':
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       '404':
  *         description: Book not found
- *       500:
+ *       '500':
  *         description: Internal Server Error
  */
 router.put('/books/:id', authenticateToken, updateBook);
