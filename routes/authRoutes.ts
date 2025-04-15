@@ -128,6 +128,6 @@ router.post('/login', loginUser);
  *       500:
  *         description: Internal Server Error
  */
-router.get('/me',authenticateToken, getMe);
+router.get('/me', authenticateToken, getMe);
 
 export default router;

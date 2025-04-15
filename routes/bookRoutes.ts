@@ -57,7 +57,7 @@ const router: Router = express.Router();
  *       500:
  *         description: Internal Server Error
  */
-router.get('/books', authenticateToken,getAllBooks);
+router.get('/books', authenticateToken, getAllBooks);
 
 /**
  * @swagger
@@ -87,7 +87,7 @@ router.get('/books', authenticateToken,getAllBooks);
  *       500:
  *         description: Internal Server Error
  */
-router.get('/books/:id', authenticateToken,getBookById);
+router.get('/books/:id', authenticateToken, getBookById);
 
 /**
  * @swagger
@@ -113,7 +113,7 @@ router.get('/books/:id', authenticateToken,getBookById);
  *       500:
  *         description: Internal Server Error
  */
-router.delete('/books/:id', authenticateToken,deleteBook);
+router.delete('/books/:id', authenticateToken, deleteBook);
 
 /**
  * @swagger
@@ -174,7 +174,7 @@ router.delete('/books/:id', authenticateToken,deleteBook);
  *       500:
  *         description: Internal Server Error
  */
-router.post('/books', authenticateToken,addBook);
+router.post('/books', authenticateToken, addBook);
 
 /**
  * @swagger
@@ -238,6 +238,6 @@ router.post('/books', authenticateToken,addBook);
  *       500:
  *         description: Internal Server Error
  */
-router.put('/books/:id', authenticateToken,updateBook);
+router.put('/books/:id', authenticateToken, updateBook);
 
 export default router;

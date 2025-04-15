@@ -61,7 +61,7 @@ const router: Router = express.Router();
  *       500:
  *         description: Internal Server Error
  */
-router.get('/users',authenticateToken,authorizeAdmin, getAllUsers);
+router.get('/users',authenticateToken, authorizeAdmin, getAllUsers);
 
 /**
  * @swagger
@@ -89,6 +89,6 @@ router.get('/users',authenticateToken,authorizeAdmin, getAllUsers);
  *       500:
  *         description: Internal Server Error
  */
-router.delete('/users/:id',authenticateToken,authorizeAdmin, deleteUser);
+router.delete('/users/:id',authenticateToken, authorizeAdmin, deleteUser);
 
 export default router;
